@@ -147,6 +147,66 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:4px}
 .hint{font-size:13px;color:var(--muted);margin:0}
 .toast{font-size:14px;color:var(--ok);min-height:1.2em;margin:0}
 
+/* ===== effects ===== */
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:0;background:linear-gradient(90deg,var(--accent),#ff9a3d);box-shadow:0 0 10px var(--accent)}
+
+/* hero: always-dark racing band */
+.hero{position:relative;overflow:hidden;background:
+  radial-gradient(ellipse 60% 80% at 85% 20%,rgba(255,60,40,.22),transparent 60%),
+  repeating-linear-gradient(45deg,#101216 0 6px,#0c0e11 6px 12px);
+  color:#f2f3f5;padding:56px 0 44px;isolation:isolate}
+.hero::after{content:"";position:absolute;left:-10%;right:-10%;bottom:0;height:6px;background:repeating-linear-gradient(90deg,var(--accent) 0 60px,transparent 60px 80px);transform:skewX(-30deg);opacity:.9}
+#speed{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.hero h1{color:#fff;text-shadow:0 2px 30px rgba(0,0,0,.6)}
+.hero h1 em{background:linear-gradient(100deg,#ff3b2f 0%,#ff9a3d 40%,#fff 50%,#ff9a3d 60%,#ff3b2f 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 4s linear infinite}
+@keyframes shimmer{to{background-position:-250% 0}}
+.hero p.lead{color:#b9c0c9}
+.hero .gen-pick button{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.14);color:#fff;backdrop-filter:blur(6px);transition:transform .2s,border-color .2s,box-shadow .2s}
+.hero .gen-pick button small{color:#9aa3ae}
+.hero .gen-pick button:hover{transform:translateY(-3px) skewX(-6deg);border-color:#ff4a3d;box-shadow:0 8px 24px rgba(255,60,40,.35)}
+.hero .round{background:rgba(20,22,27,.72);border-color:rgba(255,255,255,.12);border-left-color:#ff4a3d;color:#f2f3f5;backdrop-filter:blur(10px);box-shadow:0 20px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,74,61,.15)}
+.hero .round .eyebrow{color:#ff4a3d;display:flex;align-items:center;gap:8px}
+.hero .round .eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:#ff4a3d;box-shadow:0 0 0 0 rgba(255,74,61,.7);animation:ping 1.6s infinite}
+.hero .round dt{color:#9aa3ae}
+.hero .countdown div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.hero .countdown b{color:#fff;text-shadow:0 0 18px rgba(255,74,61,.6)}
+.hero .countdown span{color:#9aa3ae}
+.hero .countdown b.tick{animation:tick .35s ease-out}
+@keyframes tick{0%{transform:translateY(-6px);opacity:.3;color:#ff4a3d}100%{transform:none;opacity:1}}
+@media (max-width:420px){.countdown b{font-size:22px}.countdown span{font-size:11px}}
+@keyframes ping{70%{box-shadow:0 0 0 8px rgba(255,74,61,0)}100%{box-shadow:0 0 0 0 rgba(255,74,61,0)}}
+
+/* racing stripe on section titles */
+.shop-head h2,section.block h2{display:flex;align-items:center;gap:12px}
+.shop-head h2::before,section.block h2::before{content:"";width:28px;height:10px;background:linear-gradient(90deg,var(--accent) 0 60%,transparent 60% 70%,var(--accent) 70%);transform:skewX(-30deg)}
+
+/* button shine */
+.btn-accent{position:relative;overflow:hidden;transition:transform .15s,box-shadow .2s}
+.btn-accent::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-25deg);transition:left .5s}
+.btn-accent:hover{box-shadow:0 6px 20px color-mix(in srgb,var(--accent) 45%,transparent);transform:translateY(-1px)}
+.btn-accent:hover::after{left:130%}
+
+/* cards: tilt + glow */
+.grid{perspective:1200px}
+.card{position:relative;transform-style:preserve-3d;transition:transform .25s ease,box-shadow .25s,border-color .25s;--mx:50%;--my:50%}
+.card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(240px circle at var(--mx) var(--my),var(--accent),transparent 60%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .25s;pointer-events:none;z-index:2}
+.card:hover{box-shadow:0 18px 40px rgba(0,0,0,.18),0 0 30px color-mix(in srgb,var(--accent) 18%,transparent)}
+.card:hover::before{opacity:1}
+.card .art{overflow:hidden}
+.card .art::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.35) 50%,transparent 60%);transform:translateX(-100%);transition:transform .7s}
+.card:hover .art::after{transform:translateX(100%)}
+.card .art svg{transition:transform .4s ease,color .3s}
+.card:hover .art svg{transform:scale(1.08) translateZ(30px);color:var(--accent)}
+.st-pre::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin-right:6px;vertical-align:1px;animation:blink 1.2s infinite}
+@keyframes blink{50%{opacity:.25}}
+.chip{transition:background .15s,color .15s,border-color .15s,transform .15s}
+.chip:hover{border-color:var(--accent);transform:translateY(-1px)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);box-shadow:0 4px 14px color-mix(in srgb,var(--accent) 35%,transparent)}
+.steps li{transition:transform .2s,border-color .2s}
+.steps li:hover{transform:translateY(-4px);border-color:var(--accent)}
+.overlay.open .modal{animation:pop .25s ease-out}
+@keyframes pop{from{transform:translateY(16px) scale(.97)}}
+
 @media (max-width:860px){
   .hero .wrap{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,1fr)}
@@ -177,10 +237,12 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:4px}
     </nav>
     <a class="btn btn-accent" id="topChat" href="#">ทักแชทสั่งซื้อ</a>
   </div>
+  <div class="progress" id="progress"></div>
 </header>
 
 <main id="top">
   <section class="hero">
+    <canvas id="speed" aria-hidden="true"></canvas>
     <div class="wrap">
       <div>
         <h1>อะไหล่แต่ง <em>Honda Civic</em><br>พรีออเดอร์ตรงจากจีน</h1>
@@ -296,7 +358,7 @@ const SHOP = {
 const ROUND = {
   name: "รอบที่ 3 · พฤศจิกายน",
   closes: "2026-11-20T23:59:00+07:00",
-  arrive: "ต้น–กลาง ธ.ค. 2026",
+  arrive: "ต้น–กลาง ธ.ค. 2569",
   deposit: "30% ของราคา",
   shipping: "ทางรถ (ชิ้นเล็ก) / ทางเรือ (ชิ้นใหญ่)"
 };
@@ -428,19 +490,28 @@ $("#mCopy").addEventListener("click", async () => {
 
 /* ===== round + contact ===== */
 function fmtDate(d){ return d.toLocaleDateString("th-TH", {day:"numeric", month:"short", year:"numeric"}) + " " + d.toLocaleTimeString("th-TH",{hour:"2-digit",minute:"2-digit"}) + " น."; }
+const cd = $("#countdown");
+cd.innerHTML = ["วัน","ชั่วโมง","นาที","วินาที"].map(u => `<div><b>--</b><span>${u}</span></div>`).join("");
+const cdNums = [...cd.querySelectorAll("b")];
+let timer;
 function tick(){
   const left = new Date(ROUND.closes) - new Date();
-  const el = $("#countdown");
-  if (left <= 0){ el.innerHTML = '<div><b>ปิดรับแล้ว</b><span>รอประกาศรอบถัดไป</span></div>'; return; }
-  const d = Math.floor(left / 864e5), h = Math.floor(left / 36e5) % 24, m = Math.floor(left / 6e4) % 60;
-  el.innerHTML = [[d,"วัน"],[h,"ชั่วโมง"],[m,"นาที"]].map(([n,u]) => `<div><b>${String(n).padStart(2,"0")}</b><span>${u}</span></div>`).join("");
+  if (left <= 0){ clearInterval(timer); cd.innerHTML = '<div><b>ปิดรับแล้ว</b><span>รอประกาศรอบถัดไป</span></div>'; return; }
+  const vals = [Math.floor(left / 864e5), Math.floor(left / 36e5) % 24, Math.floor(left / 6e4) % 60, Math.floor(left / 1e3) % 60];
+  vals.forEach((n, i) => {
+    const t = String(n).padStart(2, "0"), b = cdNums[i];
+    if (b.textContent !== t){
+      b.textContent = t;
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches){ b.classList.remove("tick"); void b.offsetWidth; b.classList.add("tick"); }
+    }
+  });
 }
 $("#roundTitle").textContent = ROUND.name;
 $("#roundInfo").innerHTML = [
   ["ปิดรับ", fmtDate(new Date(ROUND.closes))], ["คาดถึงไทย", ROUND.arrive],
   ["มัดจำ", ROUND.deposit], ["ขนส่ง", ROUND.shipping]
 ].map(([k,v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
-tick(); setInterval(tick, 30000);
+tick(); timer = setInterval(tick, 1000);
 
 $("#genPick").innerHTML = MODELS.map(m => `<button type="button" data-m="${m.id}">Civic ${m.name}<small>${m.gen}</small></button>`).join("");
 $("#genPick").addEventListener("click", e => {
@@ -459,6 +530,62 @@ $("#contactList").innerHTML = `
 $("#yr").textContent = new Date().getFullYear();
 
 renderFilters(); render();
+
+/* ===== effects ===== */
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+// scroll progress bar
+const bar = $("#progress");
+addEventListener("scroll", () => {
+  const h = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (h > 0 ? scrollY / h * 100 : 0) + "%";
+}, {passive:true});
+
+// speed lines in the hero
+(() => {
+  const c = $("#speed"), ctx = c.getContext("2d");
+  let W = 0, H = 0, lines = [];
+  const make = () => ({
+    x: Math.random() * W, y: Math.random() * H,
+    len: 40 + Math.random() * 220, v: 6 + Math.random() * 16,
+    a: .08 + Math.random() * .35, red: Math.random() < .3, w: Math.random() < .15 ? 2 : 1
+  });
+  function size(){
+    const r = c.getBoundingClientRect(), d = Math.min(devicePixelRatio || 1, 2);
+    W = r.width; H = r.height; c.width = W * d; c.height = H * d; ctx.setTransform(d,0,0,d,0,0);
+    lines = Array.from({length: Math.round(W / 14)}, make);
+  }
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    for (const l of lines){
+      const g = ctx.createLinearGradient(l.x, 0, l.x + l.len, 0);
+      const col = l.red ? "255,70,50" : "255,255,255";
+      g.addColorStop(0, `rgba(${col},${l.a})`); g.addColorStop(1, `rgba(${col},0)`);
+      ctx.strokeStyle = g; ctx.lineWidth = l.w;
+      ctx.beginPath(); ctx.moveTo(l.x, l.y); ctx.lineTo(l.x + l.len, l.y); ctx.stroke();
+      if (!reduce){ l.x -= l.v; if (l.x + l.len < 0){ Object.assign(l, make()); l.x = W + Math.random() * 100; } }
+    }
+  }
+  let on = true;
+  function loop(){ if (on) draw(); if (!reduce) requestAnimationFrame(loop); }
+  new IntersectionObserver(([e]) => on = e.isIntersecting).observe(c);
+  size(); draw(); loop();
+  addEventListener("resize", () => { size(); draw(); });
+})();
+
+// card tilt + glow follows the pointer
+if (!reduce && matchMedia("(hover: hover)").matches){
+  $("#grid").addEventListener("pointermove", e => {
+    const card = e.target.closest(".card"); if (!card) return;
+    const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+    card.style.setProperty("--mx", x * 100 + "%"); card.style.setProperty("--my", y * 100 + "%");
+    card.style.transform = `rotateY(${(x - .5) * 10}deg) rotateX(${(.5 - y) * 10}deg) translateY(-4px)`;
+  });
+  $("#grid").addEventListener("pointerout", e => {
+    const card = e.target.closest(".card");
+    if (card && !card.contains(e.relatedTarget)) card.style.transform = "";
+  });
+}
 </script>
 </body>
 </html>
